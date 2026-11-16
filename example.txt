@@ -1,0 +1,72 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace OOPSeatingRefresher
+{
+    internal class Seat
+    {
+        // `Seat` class
+        // stores row, column, and customer name
+        // can reserve, update, and clear reservation
+
+        public int Row;
+        public int Column;
+        public string? CustomerName; // Chris
+
+        public bool isReserved => !string.IsNullOrWhiteSpace(CustomerName);
+        // Chris is Chris Null or Whitespace, No so its FALSE.
+        // Because of the '!' we flip the result, so the FALSE becomes TRUE.
+        // If there is a NAME then the value will be TRUE
+        // isReserved is TRUE if there is a name
+
+        public Seat(int row, int column)
+        {
+            Row = row; // 2
+            Column = column; // 1
+            CustomerName = null; // ' '
+        }
+
+        //public bool isReserved(string customerName)
+        //{
+        //    bool customerInSeat = string.IsNullOrWhiteSpace(customerName);
+        //    return !customerInSeat;
+        //}
+
+        // Seat customerReservationSeat = new Seat(2, 1);
+        // customerReservationSeat.Reserve("Chris");
+
+        public bool Reserve(string customerName)
+        {
+            if (isReserved)
+            {
+                return false;
+            }
+
+            CustomerName = customerName;
+            return true;
+        }
+
+        public bool UpdateReservation(string newCustomerName) // Caitlyn
+        {
+            if (!isReserved)
+            {
+                return false;
+            }
+
+            CustomerName = newCustomerName;
+            return true;
+        }
+
+        public bool ClearReservation()
+        {
+            if (!isReserved)
+            {
+                return false;
+            }
+
+            CustomerName = null;
+            return true;
+        }
+    }
+}
